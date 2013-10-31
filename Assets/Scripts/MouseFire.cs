@@ -3,7 +3,6 @@ using System.Collections;
 
 public class MouseFire : MonoBehaviour {
 	
-	public GameObject dinosaur;
 	public float speed;
 	
 	Vector3 target;
@@ -29,12 +28,25 @@ public class MouseFire : MonoBehaviour {
 	            print(hit.transform.name);
 				hit.transform.SendMessage("Activate", SendMessageOptions.DontRequireReceiver);
 				target = ray.origin;
-			}			
+			}
 		}
 		
 		float dist = Vector2.Distance(transform.position, target);
-		if(dist > 2) {
-			transform.position = Vector3.Lerp(transform.position, target, Time.deltaTime);
+		
+		if(dist > 2) 
+		{
+			Vector3 dir = target - transform.position;
+			
+			Vector3 scale = transform.localScale;
+			scale.x = Mathf.Sign(dir.x);
+			transform.localScale = scale;
+			
+			Vector3 pos = transform.position;
+			pos += dir.normalized * Time.deltaTime * speed; //Linear speed
+			
+			//pos += dir * Time.deltaTime * speed;
+			
+			transform.position = pos;
 		}
 	}
 }
