@@ -10,16 +10,12 @@ public class MouseFire : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// Shoot the ray on mouse click
-	    if (Input.GetButtonUp("Fire1"))
-	    {
-	        RaycastHit hit;
-	 
-	        // Cast a ray forward from our position for the specified distance
-	        if (Physics.Raycast(transform.position, transform.forward, hit, distance))
-	        {
-				
-			}	    
-	    }
+		if(Input.GetMouseButtonDown(0)){
+			RaycastHit hit;
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+	        if (Physics.Raycast(ray, out hit, 1000))
+	            print(hit.transform.name);
+				hit.transform.SendMessage("Activate", SendMessageOptions.DontRequireReceiver);
+		}
 	}
 }
