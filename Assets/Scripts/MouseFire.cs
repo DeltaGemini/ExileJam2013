@@ -5,6 +5,9 @@ public class MouseFire : MonoBehaviour {
 	
 	public float speed;
 	public float minX = -14f;
+	public float maxY = 10f;
+	public float minY = -4f;
+	
 	Vector3 target;
 	Vector3 startLocation;
 	
@@ -17,22 +20,29 @@ public class MouseFire : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		target.y = startLocation.y;
+		//target.y = startLocation.y;
 		target.z = startLocation.z;
 		
 		if(Input.GetMouseButtonDown(0)){
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 	        if (Physics.Raycast(ray, out hit, 100)){
-	            print(hit.transform.name);
 				hit.transform.SendMessage("Activate", SendMessageOptions.DontRequireReceiver);
 				target = ray.origin;
+				Debug.Log(ray.origin);
 			}
 		}
 		
+		//Don't go too far off to the left
 		if(target.x < minX){
 			target.x = minX;
 		}
+		
+		if(target.y > maxY)
+			target.y = maxY;
+		
+		if(target.y < minY)
+			target.y = minY;
 		
 		float dist = Vector2.Distance(transform.position, target);
 		
