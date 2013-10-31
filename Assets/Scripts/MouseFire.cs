@@ -20,8 +20,6 @@ public class MouseFire : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//target.y = startLocation.y;
-		target.z = startLocation.z;
 		
 		if(Input.GetMouseButtonDown(0)){
 			RaycastHit hit;
@@ -34,9 +32,8 @@ public class MouseFire : MonoBehaviour {
 		}
 		
 		//Don't go too far off to the left
-		if(target.x < minX){
-			target.x = minX;
-		}
+		if(target.x < minX)
+			target.x = minX;		
 		
 		if(target.y > maxY)
 			target.y = maxY;
@@ -56,7 +53,7 @@ public class MouseFire : MonoBehaviour {
 			
 			Vector3 pos = transform.position;
 			pos += dir.normalized * Time.deltaTime * speed; //Linear speed
-			
+			pos.z = pos.y - 2f;
 			//pos += dir * Time.deltaTime * speed;
 			
 			transform.position = pos;
