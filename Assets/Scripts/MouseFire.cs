@@ -4,7 +4,7 @@ using System.Collections;
 public class MouseFire : MonoBehaviour {
 	
 	public float speed;
-	
+	public float minX = -14f;
 	Vector3 target;
 	Vector3 startLocation;
 	
@@ -17,7 +17,6 @@ public class MouseFire : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(target);
 		target.y = startLocation.y;
 		target.z = startLocation.z;
 		
@@ -29,6 +28,10 @@ public class MouseFire : MonoBehaviour {
 				hit.transform.SendMessage("Activate", SendMessageOptions.DontRequireReceiver);
 				target = ray.origin;
 			}
+		}
+		
+		if(target.x < minX){
+			target.x = minX;
 		}
 		
 		float dist = Vector2.Distance(transform.position, target);
