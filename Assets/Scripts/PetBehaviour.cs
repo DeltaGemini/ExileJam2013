@@ -33,6 +33,6 @@ public class PetBehaviour : MonoBehaviour {
 			transform.position = pos;
 		}
 		
-		Debug.Log (dir.x);
+		// Debug.Log (dir.x);
 	}
 }
