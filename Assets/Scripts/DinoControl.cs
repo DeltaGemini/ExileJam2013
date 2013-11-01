@@ -7,8 +7,8 @@ public class DinoControl : MonoBehaviour {
 	public GameObject child;
 	public Camera mainCamera;
 	public float minX = -14f;
-	public float maxY = 10f;
-	public float minY = -4f;
+	public static float maxY = -2.5f;
+	public static float minY = -10f;
 	
 	Vector3 target;
 	Vector3 startLocation;
@@ -166,7 +166,15 @@ public class DinoControl : MonoBehaviour {
 			AudioClip footStep = sounds[Random.Range(12,15)];
 			audio.PlayOneShot(footStep);
 			mainCamera.SendMessage("Shake", 0.1);
+			break;/*
+		case "breatheIn":
+			AudioClip breathIn = sounds[Random.Range (20,29)];
+			audio.PlayOneShot(breathIn);
 			break;
+		case "breatheOut":
+			AudioClip breathOut = sounds[Random.Range (30,39)];
+			audio.PlayOneShot(breathOut);
+			break;*/
 		}
 	}
 }
