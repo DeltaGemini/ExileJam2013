@@ -23,6 +23,8 @@ public class DinoControl : MonoBehaviour {
 	
 	public AudioClip[] sounds;
 	
+	public Transform[] pets;
+	
 	//Hold down timer
 	float mouseTime = 0;
 	
@@ -52,7 +54,6 @@ public class DinoControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		
 		float dist = Vector2.Distance(transform.position, target);
 		
 		if(dist <= 3) {			
@@ -63,7 +64,7 @@ public class DinoControl : MonoBehaviour {
 			Vector3 dir = target - transform.position;
 			
 			Vector3 scale = transform.localScale;
-			scale.x = Mathf.Sign(dir.x);
+			scale.x = Mathf.Sign(dir.x + 5);
 			
 			transform.localScale = scale;
 			
@@ -77,7 +78,7 @@ public class DinoControl : MonoBehaviour {
 		}
 		
 		if(Input.GetMouseButton(0)){
-			
+						
 			mouseTime += Time.deltaTime;
 			
 			RaycastHit hit;
@@ -88,8 +89,13 @@ public class DinoControl : MonoBehaviour {
 				case "neck":
 					if(mouseTime >= 0.5f){
 						AnimateBlend(roarAnim.name);
+						foreach(Transform pet in pets){
+							pet.gameObject.SendMessage("AnimateBlend", "scared");
+						}
 						PlaySound("roar");
-						mainCamera.gameObject.SendMessage("Shake", 0.2);
+						mainCamera.gameObject.SendMessage("Shake", 0.2);					
+						mouseTime = 0;
+					} else if(mouseTime > 3) {
 						mouseTime = 0;
 					} else {
 						AnimateBlend(jawAnim.name);
@@ -159,7 +165,7 @@ public class DinoControl : MonoBehaviour {
 		case "step":
 			AudioClip footStep = sounds[Random.Range(12,15)];
 			audio.PlayOneShot(footStep);
-			mainCamera.SendMessage("Shake", 0.05);
+			mainCamera.SendMessage("Shake", 0.1);
 			break;
 		}
 	}

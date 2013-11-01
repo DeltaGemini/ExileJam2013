@@ -9,13 +9,23 @@ public class PetBehaviour : MonoBehaviour {
 	public float speed = 5;
 	public float dist = 8;
 	
+	float randomOffset;
+	
 	float parentY;
+	AnimationState idleAnim;
 	AnimationState walkAnim;
+	AnimationState scaredAnim;
 	
 	// Use this for initialization
 	void Start () {		
+		idleAnim = child.animation["idle"];
+		idleAnim.layer = 2;
 		walkAnim = child.animation["walk"];
-		walkAnim.layer = 3;	
+		walkAnim.layer = 3;
+		scaredAnim = child.animation["scared"];
+		scaredAnim.layer = 5;
+		
+		randomOffset = Random.Range(1, 1.5f);
 	}
 	
 	// Update is called once per frame
@@ -25,31 +35,31 @@ public class PetBehaviour : MonoBehaviour {
 		Vector3 dir = target - transform.position;			
 		Vector3 scale = transform.localScale;
 		
-		if(dir.x > dist || dir.x < -dist){
+		if(dir.x >= dist){
 			
 			scale.x = Mathf.Sign(dir.x);
 			
 			transform.localScale = scale;
 			
+			parentY = parent.transform.position.y - parent.gameObject.collider.bounds.size.y/2;
 			Vector3 pos = transform.position;
 			pos += dir.normalized * Time.deltaTime * speed; //Linear speed
 			pos.z = parent.transform.position.z + 0.2f;
-			//pos += dir * Time.deltaTime * speed;
-			
+			pos.y = parentY + gameObject.collider.bounds.size.y/2 + 7.5f + randomOffset;			
 			transform.position = pos;
+			
 			Animate(walkAnim.name);
+		} else {
+			Animate(idleAnim.name);
 		}
-		
-		parentY = parent.transform.position.y - parent.gameObject.collider.bounds.size.y/2;
-		
-		Vector3 newPos = transform.position;
-		newPos.y = parentY + gameObject.collider.bounds.size.y/2 + 7.5f;
-		transform.position = newPos;
-		
-		Debug.Log(transform.position.y + ", " + parent.transform.position.y);
+		//Debug.Log(transform.position.y + ", " + parent.transform.position.y);
 	}	
 	
 	void Animate(string name){
 		child.animation.CrossFade(name);
+	}
+	
+	void AnimateBlend(string name){
+		child.animation.Blend(name, 1.0f);
 	}
 }
