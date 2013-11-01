@@ -19,8 +19,12 @@ public class DinoControl : MonoBehaviour {
 	AnimationState frontWristAnim;
 	AnimationState backWristAnim;
 	AnimationState tailAnim;
+	AnimationState jawAnim;
 	
 	public AudioClip[] sounds;
+	
+	//Hold down timer
+	float mouseTime = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -41,7 +45,8 @@ public class DinoControl : MonoBehaviour {
 		backWristAnim.layer = 6;	
 		tailAnim = child.animation["WriggleTail"];
 		tailAnim.layer = 4;
-		
+		jawAnim = child.animation["ClapJaws"];
+		jawAnim.layer = 7;		
 	}
 	
 	// Update is called once per frame
@@ -71,17 +76,22 @@ public class DinoControl : MonoBehaviour {
 		}
 		
 		if(Input.GetMouseButton(0)){
+			
+			mouseTime += Time.deltaTime;
+			
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 	        if (Physics.Raycast(ray, out hit, 1000)){
 				hit.transform.SendMessage("Activate", SendMessageOptions.DontRequireReceiver);
-				Debug.Log(hit.transform.name);
 				switch(hit.transform.name){
 				case "neck":
-					target = transform.position;
-					Animate(roarAnim.name);
-					PlaySound("roar");
-					mainCamera.gameObject.SendMessage("Shake", 0.2);
+					if(mouseTime >= 0.5f){
+						AnimateBlend(roarAnim.name);
+						PlaySound("roar");
+						mainCamera.gameObject.SendMessage("Shake", 0.2);
+					} else {
+						AnimateBlend(jawAnim.name);
+					}
 					break;
 				case "foot_back":
 					target = transform.position;
@@ -93,25 +103,27 @@ public class DinoControl : MonoBehaviour {
 					break;
 				case "arm_front_wrist":
 					target = transform.position;
-					Animate(frontWristAnim.name);
+					AnimateBlend(frontWristAnim.name);
 					break;
 				case "arm_back_wrist":
 					target = transform.position;
-					Animate(backWristAnim.name);
+					AnimateBlend(backWristAnim.name);
 					break;
 				case "tail09":
 				case "tail07":
 				case "tail08":
 				case "tail06":
 					target = transform.position;
-					Animate (tailAnim.name);
+					AnimateBlend(tailAnim.name);
 					break;
 				default:
 					target = ray.origin;
 					break;
 				}					
 			}
-		}
+		} else {
+			mouseTime = 0;	
+		}		
 		
 		//Don't go too far off to the left
 		if(target.x < minX)
@@ -124,13 +136,16 @@ public class DinoControl : MonoBehaviour {
 			target.y = minY;		
 		
 		if(child.animation["Walk"].time == 0.21 || child.animation["Walk"].time == 2){
-			Debug.Log("Step");
 			PlaySound("step");
 		}		
 	}
 	
 	void Animate(string name){
 		child.animation.CrossFade(name);
+	}
+	
+	void AnimateBlend (string name){
+		child.animation.Blend(name, 0.5f);
 	}
 	
 	public void PlaySound (string evt) {

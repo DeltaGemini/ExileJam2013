@@ -1,6 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DinoControl.cs">
+    <Files>
+      <File FileName="Assets\Scripts\DinoControl.cs" Line="117" Column="18" />
+      <File FileName="Assets\Scripts\CameraShake.cs" Line="23" Column="37" />
+      <File FileName="Assets\Scripts\AnimationCue.cs" Line="6" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
