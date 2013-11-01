@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MouseFire : MonoBehaviour {
+public class DinoControl : MonoBehaviour {
 	
 	public float speed;
+	public GameObject child;
 	public float minX = -14f;
 	public float maxY = 10f;
 	public float minY = -4f;
@@ -26,8 +27,15 @@ public class MouseFire : MonoBehaviour {
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 	        if (Physics.Raycast(ray, out hit, 100)){
 				hit.transform.SendMessage("Activate", SendMessageOptions.DontRequireReceiver);
-				target = ray.origin;
-				Debug.Log(ray.origin);
+				Debug.Log(hit.transform.name);
+				switch(hit.transform.name){
+				case "neck":
+					child.animation.Blend("Roar");
+					break;
+				default:
+					target = ray.origin;
+					break;
+				}					
 			}
 		}
 		
@@ -49,14 +57,18 @@ public class MouseFire : MonoBehaviour {
 			
 			Vector3 scale = transform.localScale;
 			scale.x = Mathf.Sign(dir.x);
+			
 			transform.localScale = scale;
 			
 			Vector3 pos = transform.position;
 			pos += dir.normalized * Time.deltaTime * speed; //Linear speed
 			pos.z = pos.y - 2f;
+			child.animation.Blend("Walk");
 			//pos += dir * Time.deltaTime * speed;
 			
 			transform.position = pos;
+		} else {
+			child.animation.Blend("Idle");
 		}
 	}
 }
