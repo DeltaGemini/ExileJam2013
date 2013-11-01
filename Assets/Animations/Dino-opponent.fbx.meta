@@ -1,0 +1,208 @@
+fileFormatVersion: 2
+guid: a469ffca34f3c4dda95027ba63197cbb
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: ankle_back_left
+    100002: ankle_back_right
+    100004: ankle_fro_left
+    100006: ankle_fro_right
+    100008: //RootNode
+    100010: footbackleft
+    100012: footbackright
+    100014: footfrontleft
+    100016: footfrontright
+    100018: head
+    100020: head 1
+    100022: hips
+    100024: jaw
+    100026: jaw 1
+    100028: knee_back_left
+    100030: knee_back_right
+    100032: knee_fro_left
+    100034: knee_fro_right
+    100036: neck
+    100038: rock
+    100040: root
+    100042: shinbackleft
+    100044: shinbackright
+    100046: shinfrontleft
+    100048: shinfrontright
+    100050: sho_fro_left
+    100052: sho_fro_right
+    100054: spine01
+    100056: spine02
+    100058: spine03
+    100060: spine04
+    100062: spine05
+    100064: spine06
+    100066: spine1
+    100068: spine2
+    100070: tail01
+    100072: tail02
+    100074: thigh_back_left
+    100076: thigh_back_right
+    100078: thighbackleft
+    100080: thighbackright
+    100082: thighfrontleft
+    100084: thighfrontright
+    400000: ankle_back_left
+    400002: ankle_back_right
+    400004: ankle_fro_left
+    400006: ankle_fro_right
+    400008: //RootNode
+    400010: footbackleft
+    400012: footbackright
+    400014: footfrontleft
+    400016: footfrontright
+    400018: head
+    400020: head 1
+    400022: hips
+    400024: jaw
+    400026: jaw 1
+    400028: knee_back_left
+    400030: knee_back_right
+    400032: knee_fro_left
+    400034: knee_fro_right
+    400036: neck
+    400038: rock
+    400040: root
+    400042: shinbackleft
+    400044: shinbackright
+    400046: shinfrontleft
+    400048: shinfrontright
+    400050: sho_fro_left
+    400052: sho_fro_right
+    400054: spine01
+    400056: spine02
+    400058: spine03
+    400060: spine04
+    400062: spine05
+    400064: spine06
+    400066: spine1
+    400068: spine2
+    400070: tail01
+    400072: tail02
+    400074: thigh_back_left
+    400076: thigh_back_right
+    400078: thighbackleft
+    400080: thighbackright
+    400082: thighfrontleft
+    400084: thighfrontright
+    2300000: footbackleft
+    2300002: footbackright
+    2300004: footfrontleft
+    2300006: footfrontright
+    2300008: head 1
+    2300010: jaw 1
+    2300012: rock
+    2300014: shinbackleft
+    2300016: shinbackright
+    2300018: shinfrontleft
+    2300020: shinfrontright
+    2300022: spine01
+    2300024: spine02
+    2300026: spine03
+    2300028: spine04
+    2300030: spine05
+    2300032: spine06
+    2300034: thighbackleft
+    2300036: thighbackright
+    2300038: thighfrontleft
+    2300040: thighfrontright
+    3300000: footbackleft
+    3300002: footbackright
+    3300004: footfrontleft
+    3300006: footfrontright
+    3300008: head 1
+    3300010: jaw 1
+    3300012: rock
+    3300014: shinbackleft
+    3300016: shinbackright
+    3300018: shinfrontleft
+    3300020: shinfrontright
+    3300022: spine01
+    3300024: spine02
+    3300026: spine03
+    3300028: spine04
+    3300030: spine05
+    3300032: spine06
+    3300034: thighbackleft
+    3300036: thighbackright
+    3300038: thighfrontleft
+    3300040: thighfrontright
+    4300000: head
+    4300002: jaw
+    4300004: footfrontright
+    4300006: shinfrontright
+    4300008: thighfrontright
+    4300010: footfrontleft
+    4300012: shinfrontleft
+    4300014: thighfrontleft
+    4300016: spine01
+    4300018: spine02
+    4300020: spine06
+    4300022: spine05
+    4300024: footbackleft
+    4300026: shinbackleft
+    4300028: thighbackleft
+    4300030: footbackright
+    4300032: shinbackright
+    4300034: thighbackright
+    4300036: spine03
+    4300038: spine04
+    4300040: rock
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
