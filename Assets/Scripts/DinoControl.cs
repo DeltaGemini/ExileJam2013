@@ -15,6 +15,8 @@ public class DinoControl : MonoBehaviour {
 	AnimationState roarAnim;
 	AnimationState jumpAnim;
 	
+	public AudioClip[] sounds;
+	
 	
 	// Use this for initialization
 	void Start () {
@@ -65,6 +67,7 @@ public class DinoControl : MonoBehaviour {
 				case "neck":
 			target = transform.position;
 					Animate(roarAnim.name);
+					PlaySound();
 					mainCamera.gameObject.SendMessage("Shake");
 					break;
 				case "foot_back":
@@ -99,6 +102,7 @@ public class DinoControl : MonoBehaviour {
 	}
 	
 	void PlaySound () {
-		
+		audio.clip = sounds[Random.Range(16,19)];
+		audio.Play();
 	}
 }
