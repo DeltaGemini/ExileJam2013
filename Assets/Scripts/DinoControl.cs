@@ -7,8 +7,8 @@ public class DinoControl : MonoBehaviour {
 	public GameObject child;
 	public Camera mainCamera;
 	public float minX = -14f;
-	public static float maxY = -2.5f;
-	public static float minY = -10f;
+	public float maxY = 10f;
+	public float minY = -4f;
 	
 	Vector3 target;
 	Vector3 startLocation;
@@ -23,8 +23,6 @@ public class DinoControl : MonoBehaviour {
 	
 	public AudioClip[] sounds;
 	
-	public Transform[] pets;
-	
 	//Hold down timer
 	float mouseTime = 0;
 	
@@ -33,7 +31,6 @@ public class DinoControl : MonoBehaviour {
 		target = transform.position;
 		startLocation.y = transform.position.y;
 		startLocation.z = transform.position.z;
-		
 		roarAnim = child.animation["Roar"];
 		roarAnim.layer = 8;		
 		jumpAnim = child.animation["Jump"];
@@ -54,6 +51,7 @@ public class DinoControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		
 		float dist = Vector2.Distance(transform.position, target);
 		
 		if(dist <= 3) {			
@@ -64,7 +62,7 @@ public class DinoControl : MonoBehaviour {
 			Vector3 dir = target - transform.position;
 			
 			Vector3 scale = transform.localScale;
-			scale.x = Mathf.Sign(dir.x + 5);
+			scale.x = Mathf.Sign(dir.x);
 			
 			transform.localScale = scale;
 			
@@ -78,7 +76,7 @@ public class DinoControl : MonoBehaviour {
 		}
 		
 		if(Input.GetMouseButton(0)){
-						
+			
 			mouseTime += Time.deltaTime;
 			
 			RaycastHit hit;
@@ -89,14 +87,8 @@ public class DinoControl : MonoBehaviour {
 				case "neck":
 					if(mouseTime >= 0.5f){
 						AnimateBlend(roarAnim.name);
-						foreach(Transform pet in pets){
-							pet.gameObject.SendMessage("AnimateBlend", "scared");
-						}
 						PlaySound("roar");
-						mainCamera.gameObject.SendMessage("Shake", 0.2);					
-						mouseTime = 0;
-					} else if(mouseTime > 3) {
-						mouseTime = 0;
+						mainCamera.gameObject.SendMessage("Shake", 0.2);
 					} else {
 						AnimateBlend(jawAnim.name);
 					}
@@ -145,7 +137,7 @@ public class DinoControl : MonoBehaviour {
 		
 		if(child.animation["Walk"].time == 0.21 || child.animation["Walk"].time == 2){
 			PlaySound("step");
-		}
+		}		
 	}
 	
 	void Animate(string name){
@@ -165,16 +157,8 @@ public class DinoControl : MonoBehaviour {
 		case "step":
 			AudioClip footStep = sounds[Random.Range(12,15)];
 			audio.PlayOneShot(footStep);
-			mainCamera.SendMessage("Shake", 0.1);
-			break;/*
-		case "breatheIn":
-			AudioClip breathIn = sounds[Random.Range (20,29)];
-			audio.PlayOneShot(breathIn);
+			mainCamera.SendMessage("Shake", 0.05);
 			break;
-		case "breatheOut":
-			AudioClip breathOut = sounds[Random.Range (30,39)];
-			audio.PlayOneShot(breathOut);
-			break;*/
 		}
 	}
 }

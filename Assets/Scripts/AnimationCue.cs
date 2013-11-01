@@ -9,12 +9,4 @@ public class AnimationCue : MonoBehaviour {
 	void RunAnimation(){
 		parent.SendMessage("PlaySound", "step");
 	}
-	
-	void BreatheIn(){
-		parent.SendMessage("PlaySound", "breatheIn");
-	}
-	
-	void BreatheOut(){
-		parent.SendMessage("PlaySound", "breatheOut");
-	}
 }
