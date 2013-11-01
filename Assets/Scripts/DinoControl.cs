@@ -159,6 +159,14 @@ public class DinoControl : MonoBehaviour {
 			audio.PlayOneShot(footStep);
 			mainCamera.SendMessage("Shake", 0.05);
 			break;
-		}
+		case "breatheIn":
+            AudioClip breathIn = sounds[Random.Range (30,39)];
+            audio.PlayOneShot(breathIn);
+            break;
+        case "breatheOut":
+            AudioClip breathOut = sounds[Random.Range (20,29)];
+            audio.PlayOneShot(breathOut);
+            break;
+        }
 	}
 }
