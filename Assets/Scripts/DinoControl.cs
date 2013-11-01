@@ -14,9 +14,10 @@ public class DinoControl : MonoBehaviour {
 	Vector3 startLocation;
 	AnimationState roarAnim;
 	AnimationState jumpAnim;
+	AnimationState walkAnim;
+	AnimationState idleAnim;
 	
 	public AudioClip[] sounds;
-	
 	
 	// Use this for initialization
 	void Start () {
@@ -24,23 +25,26 @@ public class DinoControl : MonoBehaviour {
 		startLocation.y = transform.position.y;
 		startLocation.z = transform.position.z;
 		roarAnim = child.animation["Roar"];
-		roarAnim.layer = 2;		
+		roarAnim.layer = 8;		
 		jumpAnim = child.animation["Jump"];
-		jumpAnim.layer = 1;
+		jumpAnim.layer = 5;
+		walkAnim = child.animation["Walk"];
+		walkAnim.layer = 3;
+		idleAnim = child.animation["Idle"];
+		idleAnim.layer = 3;
+		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		
 		float dist = Vector2.Distance(transform.position, target);
 		
 		if(dist <= 3) {			
-			Debug.Log ("Stopped");
 			target = transform.position;
-			Animate("Idle");
+			Animate(idleAnim.name);
 			
 		} else {			
-			Debug.Log ("Walking");
 			Vector3 dir = target - transform.position;
 			
 			Vector3 scale = transform.localScale;
@@ -51,7 +55,7 @@ public class DinoControl : MonoBehaviour {
 			Vector3 pos = transform.position;
 			pos += dir.normalized * Time.deltaTime * speed; //Linear speed
 			pos.z = pos.y - 2f;
-			Animate("Walk");
+			Animate(walkAnim.name);
 			//pos += dir * Time.deltaTime * speed;
 			
 			transform.position = pos;
@@ -65,17 +69,17 @@ public class DinoControl : MonoBehaviour {
 				
 				switch(hit.transform.name){
 				case "neck":
-			target = transform.position;
+					target = transform.position;
 					Animate(roarAnim.name);
-					PlaySound();
-					mainCamera.gameObject.SendMessage("Shake");
+					PlaySound("roar");
+					mainCamera.gameObject.SendMessage("Shake", 0.2);
 					break;
 				case "foot_back":
-			target = transform.position;
+					target = transform.position;
 					Animate(jumpAnim.name);
 					break;
 				case "foot_front":
-			target = transform.position;
+					target = transform.position;
 					Animate(jumpAnim.name);
 					break;
 				default:
@@ -93,16 +97,29 @@ public class DinoControl : MonoBehaviour {
 			target.y = maxY;
 		
 		if(target.y < minY)
-			target.y = minY;
+			target.y = minY;		
 		
+		if(child.animation["Walk"].time == 0.21 || child.animation["Walk"].time == 2){
+			Debug.Log("Step");
+			PlaySound("step");
+		}		
 	}
 	
 	void Animate(string name){
 		child.animation.CrossFade(name);
 	}
 	
-	void PlaySound () {
-		audio.clip = sounds[Random.Range(16,19)];
-		audio.Play();
+	public void PlaySound (string evt) {
+		switch (evt){
+		case "roar":
+			AudioClip roarOnce = sounds[Random.Range(16,19)];
+			audio.PlayOneShot(roarOnce);
+			break;
+		case "step":
+			AudioClip footStep = sounds[Random.Range(12,15)];
+			audio.PlayOneShot(footStep);
+			mainCamera.SendMessage("Shake", 0.05);
+			break;
+		}
 	}
 }

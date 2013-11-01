@@ -20,12 +20,13 @@ public class CameraShake : MonoBehaviour {
 		}
 	}
  
-	public void Shake(){
+	public void Shake(float intensity){
+		
 		if(shake_intensity <= 0){
 			originPosition = transform.position;
 			originRotation = transform.rotation;
-			shake_intensity = .2f;
-			shake_decay = 0.002f;
+			shake_intensity = intensity;
+			shake_decay = 0.003f;
 		}
 	}
 }
