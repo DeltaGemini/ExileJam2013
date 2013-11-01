@@ -268,11 +268,11 @@ ModelImporter:
     7400002: Idle
     7400004: Roar
     7400006: Jump
-    7400008: shake hand front
-    7400010: Shake Hand Back
-    7400012: Wriggle Tail
-    7400014: Scratch Nose
-    7400016: Clap Jaws
+    7400008: ShakeHandFront
+    7400010: ShakeHandBack
+    7400012: WriggleTail
+    7400014: ScratchNose
+    7400016: ClapJaws
     9500000: //RootNode
     11100000: //RootNode
   materials:
@@ -372,7 +372,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       transformMask: []
-    - name: shake hand front
+    - name: ShakeHandFront
       takeName: Take 001
       firstFrame: 170
       lastFrame: 200
@@ -393,7 +393,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       transformMask: []
-    - name: Shake Hand Back
+    - name: ShakeHandBack
       takeName: Take 001
       firstFrame: 200
       lastFrame: 230
@@ -414,7 +414,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       transformMask: []
-    - name: Wriggle Tail
+    - name: WriggleTail
       takeName: Take 001
       firstFrame: 230
       lastFrame: 270
@@ -435,7 +435,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       transformMask: []
-    - name: Scratch Nose
+    - name: ScratchNose
       takeName: Take 001
       firstFrame: 270
       lastFrame: 330
@@ -456,7 +456,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       transformMask: []
-    - name: Clap Jaws
+    - name: ClapJaws
       takeName: Take 001
       firstFrame: 330
       lastFrame: 370

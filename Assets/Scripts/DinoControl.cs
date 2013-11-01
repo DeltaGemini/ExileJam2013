@@ -16,6 +16,9 @@ public class DinoControl : MonoBehaviour {
 	AnimationState jumpAnim;
 	AnimationState walkAnim;
 	AnimationState idleAnim;
+	AnimationState frontWristAnim;
+	AnimationState backWristAnim;
+	AnimationState tailAnim;
 	
 	public AudioClip[] sounds;
 	
@@ -32,6 +35,12 @@ public class DinoControl : MonoBehaviour {
 		walkAnim.layer = 3;
 		idleAnim = child.animation["Idle"];
 		idleAnim.layer = 3;
+		frontWristAnim = child.animation["ShakeHandFront"];
+		frontWristAnim.layer = 6;		
+		backWristAnim = child.animation["ShakeHandBack"];
+		backWristAnim.layer = 6;	
+		tailAnim = child.animation["WriggleTail"];
+		tailAnim.layer = 4;
 		
 	}
 	
@@ -61,12 +70,12 @@ public class DinoControl : MonoBehaviour {
 			transform.position = pos;
 		}
 		
-		if(Input.GetMouseButtonDown(0)){
+		if(Input.GetMouseButton(0)){
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-	        if (Physics.Raycast(ray, out hit, 100)){
+	        if (Physics.Raycast(ray, out hit, 1000)){
 				hit.transform.SendMessage("Activate", SendMessageOptions.DontRequireReceiver);
-				
+				Debug.Log(hit.transform.name);
 				switch(hit.transform.name){
 				case "neck":
 					target = transform.position;
@@ -81,6 +90,21 @@ public class DinoControl : MonoBehaviour {
 				case "foot_front":
 					target = transform.position;
 					Animate(jumpAnim.name);
+					break;
+				case "arm_front_wrist":
+					target = transform.position;
+					Animate(frontWristAnim.name);
+					break;
+				case "arm_back_wrist":
+					target = transform.position;
+					Animate(backWristAnim.name);
+					break;
+				case "tail09":
+				case "tail07":
+				case "tail08":
+				case "tail06":
+					target = transform.position;
+					Animate (tailAnim.name);
 					break;
 				default:
 					target = ray.origin;
