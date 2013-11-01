@@ -31,6 +31,7 @@ public class DinoControl : MonoBehaviour {
 		target = transform.position;
 		startLocation.y = transform.position.y;
 		startLocation.z = transform.position.z;
+		
 		roarAnim = child.animation["Roar"];
 		roarAnim.layer = 8;		
 		jumpAnim = child.animation["Jump"];
@@ -89,6 +90,7 @@ public class DinoControl : MonoBehaviour {
 						AnimateBlend(roarAnim.name);
 						PlaySound("roar");
 						mainCamera.gameObject.SendMessage("Shake", 0.2);
+						mouseTime = 0;
 					} else {
 						AnimateBlend(jawAnim.name);
 					}
@@ -137,7 +139,7 @@ public class DinoControl : MonoBehaviour {
 		
 		if(child.animation["Walk"].time == 0.21 || child.animation["Walk"].time == 2){
 			PlaySound("step");
-		}		
+		}
 	}
 	
 	void Animate(string name){
