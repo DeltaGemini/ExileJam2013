@@ -81,7 +81,7 @@ public class DinoControl : MonoBehaviour {
 			
 			RaycastHit hit;
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-	        if (Physics.Raycast(ray, out hit, 1000)){
+	        if (Physics.Raycast(ray, out hit, 1000)){				
 				hit.transform.SendMessage("Activate", SendMessageOptions.DontRequireReceiver);
 				switch(hit.transform.name){
 				case "neck":
@@ -123,7 +123,7 @@ public class DinoControl : MonoBehaviour {
 			}
 		} else {
 			mouseTime = 0;	
-		}		
+		}
 		
 		//Don't go too far off to the left
 		if(target.x < minX)
