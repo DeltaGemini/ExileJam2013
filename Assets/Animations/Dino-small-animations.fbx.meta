@@ -1,0 +1,278 @@
+fileFormatVersion: 2
+guid: d687889907fb0406aa868d601978a924
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: ankle_back
+    100002: ankle_front
+    100004: body
+    100006: //RootNode
+    100008: elbow_back
+    100010: elbow_front
+    100012: footback
+    100014: footfroont
+    100016: head
+    100018: head 1
+    100020: hip_back
+    100022: hip_front
+    100024: jaw
+    100026: jaw 1
+    100028: knee_back
+    100030: knee_front
+    100032: lowerarmback
+    100034: lowerarmfront
+    100036: neck
+    100038: root
+    100040: shinback
+    100042: shinfront
+    100044: shoulder_back
+    100046: shoulder_front
+    100048: spine
+    100050: tail01
+    100052: tail02
+    100054: tail02 1
+    100056: tail03
+    100058: tail03 1
+    100060: tail04
+    100062: tail04 1
+    100064: tail05
+    100066: tail05 1
+    100068: tail06
+    100070: thighback
+    100072: thighfront
+    100074: upperarmback
+    100076: upperarmfront
+    400000: ankle_back
+    400002: ankle_front
+    400004: body
+    400006: //RootNode
+    400008: elbow_back
+    400010: elbow_front
+    400012: footback
+    400014: footfroont
+    400016: head
+    400018: head 1
+    400020: hip_back
+    400022: hip_front
+    400024: jaw
+    400026: jaw 1
+    400028: knee_back
+    400030: knee_front
+    400032: lowerarmback
+    400034: lowerarmfront
+    400036: neck
+    400038: root
+    400040: shinback
+    400042: shinfront
+    400044: shoulder_back
+    400046: shoulder_front
+    400048: spine
+    400050: tail01
+    400052: tail02
+    400054: tail02 1
+    400056: tail03
+    400058: tail03 1
+    400060: tail04
+    400062: tail04 1
+    400064: tail05
+    400066: tail05 1
+    400068: tail06
+    400070: thighback
+    400072: thighfront
+    400074: upperarmback
+    400076: upperarmfront
+    2300000: body
+    2300002: footback
+    2300004: footfroont
+    2300006: head 1
+    2300008: jaw 1
+    2300010: lowerarmback
+    2300012: lowerarmfront
+    2300014: shinback
+    2300016: shinfront
+    2300018: tail01
+    2300020: tail02 1
+    2300022: tail03 1
+    2300024: tail04 1
+    2300026: tail05 1
+    2300028: thighback
+    2300030: thighfront
+    2300032: upperarmback
+    2300034: upperarmfront
+    3300000: body
+    3300002: footback
+    3300004: footfroont
+    3300006: head 1
+    3300008: jaw 1
+    3300010: lowerarmback
+    3300012: lowerarmfront
+    3300014: shinback
+    3300016: shinfront
+    3300018: tail01
+    3300020: tail02 1
+    3300022: tail03 1
+    3300024: tail04 1
+    3300026: tail05 1
+    3300028: thighback
+    3300030: thighfront
+    3300032: upperarmback
+    3300034: upperarmfront
+    4300000: head
+    4300002: jaw
+    4300004: lowerarmfront
+    4300006: upperarmfront
+    4300008: lowerarmback
+    4300010: upperarmback
+    4300012: footfroont
+    4300014: shinfront
+    4300016: thighfront
+    4300018: footback
+    4300020: shinback
+    4300022: thighback
+    4300024: tail05
+    4300026: tail04
+    4300028: tail03
+    4300030: tail02
+    4300032: tail01
+    4300034: body
+    7400000: walk
+    7400002: idle
+    7400004: jump
+    7400006: scared
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations:
+    - name: walk
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: idle
+      takeName: Take 001
+      firstFrame: 25
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: jump
+      takeName: Take 001
+      firstFrame: 49
+      lastFrame: 72
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: scared
+      takeName: Take 001
+      firstFrame: 78
+      lastFrame: 87
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
