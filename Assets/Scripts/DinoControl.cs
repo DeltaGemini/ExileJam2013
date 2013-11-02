@@ -100,8 +100,6 @@ public class DinoControl : MonoBehaviour {
 			enemyTimer = 0;
 		}
 		
-		Debug.Log(enemyCounting + ", " + enemyTimer);
-		
 		if(enemyTimer >= 5){
 			int num = followers.Count;
 			Debug.Log(num);
