@@ -3,10 +3,11 @@ using System.Collections;
 
 public class NPC : MonoBehaviour {
 	
-	public GameObject triggerBox;
+	public GameObject player;
 	bool triggerActive = false;
 	public int dir = -1;
 	public GameObject child;
+	public AudioClip[] roarEffect;
 	
 	AnimationState anim01;
 	
@@ -16,18 +17,38 @@ public class NPC : MonoBehaviour {
 		scale.x = Mathf.Sign(dir);		
 		transform.localScale = scale;
 		
-		anim01 = child.animation["Emerge"];
+		anim01 = child.animation["EnemyEmerge"];
 	}
 	
-	void Activated(){
-		if(triggerActive == false){
+	void Update() {
+		float dist = transform.position.x - player.transform.position.x;
+		if(dist <= 85){
+			if(DinoControl.roaring && triggerActive){
+				Deactivated ();
+			}
+		}
+		if(!child.animation.isPlaying){
+			Debug.Log ("Ready to shout");
+		} else {
+			Debug.Log("Shouting");
+		}
+	}
+	
+	void Activate() {
+		if(!triggerActive){
+			child.animation.Play(anim01.name);
 			triggerActive = true;
-			child.animation.CrossFade(anim01.name);
 		}
 	}
 	
 	void Deactivated(){
-		child.animation[anim01.name].speed = -1.0f;
-		child.animation.CrossFade(anim01.name);
+		anim01.speed = -1;
+		child.animation.Play(anim01.name);
+		player.SendMessage("turnOffCounter");
+	}
+	
+	void PlaySound(){
+		AudioClip roarOnce = roarEffect[Random.Range(0,3)];
+		audio.PlayOneShot(roarOnce);
 	}
 }

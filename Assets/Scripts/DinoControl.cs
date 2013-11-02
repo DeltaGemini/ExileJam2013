@@ -10,7 +10,7 @@ public class DinoControl : MonoBehaviour {
 	public float minX = -14f;
 	public float maxY = 10f;
 	public float minY = -4f;	
-	public bool roaring = false;
+	public static bool roaring = false;
 	
 	bool enemyCounting = false;
 	
@@ -131,6 +131,10 @@ public class DinoControl : MonoBehaviour {
 					target = transform.position;
 					AnimateBlend(tailAnim.name);
 					break;
+				case "Animation":
+					target = transform.position;
+					hit.transform.gameObject.SendMessageUpwards("Activate");
+					break;
 				default:
 					target = ray.origin;
 					roaring = false;
@@ -159,10 +163,9 @@ public class DinoControl : MonoBehaviour {
 			enemyTimer += Time.deltaTime;
 		} else {
 			enemyTimer = 0;
-		}
+		}	
 			
-			
-		Debug.Log(enemyTimer);
+		//Debug.Log(enemyTimer);
 		
 		if(enemyTimer >= 5){
 			int num = followers.Count;
@@ -183,17 +186,11 @@ public class DinoControl : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter (Collider col){
-		if(col.gameObject.tag == "Enemy"){
-			enemyCounting = true;
-			col.gameObject.SendMessageUpwards("Activated");
-			AnimateBlend(jumpAnim.name);
-			
-		}
 		if(col.gameObject.tag == "ClearTimer"){
 			enemyCounting = false;
 		}
 	}
-	
+	/*
 	void OnTriggerStay (Collider col){
 		if(col.gameObject.tag == "Enemy"){
 			if(roaring){
@@ -201,6 +198,11 @@ public class DinoControl : MonoBehaviour {
 				enemyCounting = false;
 			}
 		}
+	}
+	*/
+	
+	void turnOffCounter(){
+		enemyCounting = false;
 	}
 	
 	public void PlaySound (string evt) {

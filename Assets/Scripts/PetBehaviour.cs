@@ -10,8 +10,6 @@ public class PetBehaviour : MonoBehaviour {
 	public float speed = 5;
 	public float dist = 8;
 	
-	float randomOffset;
-	
 	float parentY;
 	AnimationState idleAnim;
 	AnimationState walkAnim;
@@ -20,8 +18,7 @@ public class PetBehaviour : MonoBehaviour {
 	bool follow = false;
 	
 	// Use this for initialization
-	void Start () {		
-		randomOffset = Random.Range(1, 1.5f);
+	void Start () {
 		idleAnim = child.animation["idle"];
 		idleAnim.layer = 2;
 		walkAnim = child.animation["walk"];
@@ -56,7 +53,7 @@ public class PetBehaviour : MonoBehaviour {
 		Vector3 dir = target - transform.position;			
 		Vector3 scale = transform.localScale;
 		
-		if(dir.x >= dist){
+		if(dir.x >= dist || dir.x <= -dist){
 			
 			scale.x = Mathf.Sign(dir.x);
 			
