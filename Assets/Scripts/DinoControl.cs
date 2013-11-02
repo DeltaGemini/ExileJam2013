@@ -103,7 +103,6 @@ public class DinoControl : MonoBehaviour {
 		
 		if(enemyTimer >= 5){
 			int num = followers.Count;
-			Debug.Log(num);
 			if(num >= 1){
 				followers[0].SendMessage("FollowOff");
 				followers.RemoveAt(0);
@@ -225,11 +224,15 @@ public class DinoControl : MonoBehaviour {
 		enemyCounting = false;
 	}
 	
-	public void PlaySound (string evt) {		
+	public void PlaySound (string evt) {
+		
 		switch (evt){
 		case "roar":
-			int randomRoar = Random.Range(16, 19);
-			sounds[randomRoar].Play();
+			if(!roarIsPlaying){
+				int randomRoar = Random.Range(16, 19);
+				sounds[randomRoar].Play();
+				roarIsPlaying = true;
+			}
 			break;
 		case "step":
 			int randomStep = Random.Range(12, 15);
