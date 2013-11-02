@@ -104,10 +104,12 @@ public class DinoControl : MonoBehaviour {
 				case "arm_front_wrist":
 					target = transform.position;
 					AnimateBlend(frontWristAnim.name);
+					PlaySound("clawSnap");
 					break;
 				case "arm_back_wrist":
 					target = transform.position;
 					AnimateBlend(backWristAnim.name);
+					PlaySound("clawSnap");
 					break;
 				case "tail09":
 				case "tail07":
@@ -167,6 +169,10 @@ public class DinoControl : MonoBehaviour {
             AudioClip breathOut = sounds[Random.Range (20,29)];
             audio.PlayOneShot(breathOut);
             break;
+		case "clawSnap":
+			AudioClip snappingClaw = sounds[Random.Range(40, 42)];
+			audio.PlayOneShot(snappingClaw);
+			break;
         }
 	}
 }

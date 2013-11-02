@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class CameraShake : MonoBehaviour {
-	
+	public GameObject target;
 	private Vector3 originPosition;
 	private Quaternion originRotation;
 	public float shake_decay;
@@ -10,6 +10,7 @@ public class CameraShake : MonoBehaviour {
  
 	void Update (){
       	if (shake_intensity > 0){
+			originPosition.x = target.transform.position.x;
          	transform.position = originPosition + Random.insideUnitSphere * shake_intensity;
          	transform.rotation = new Quaternion(
          	originRotation.x + Random.Range (-shake_intensity,shake_intensity) * .2f,
@@ -20,8 +21,7 @@ public class CameraShake : MonoBehaviour {
 		}
 	}
  
-	public void Shake(float intensity){
-		
+	public void Shake(float intensity){		
 		if(shake_intensity <= 0){
 			originPosition = transform.position;
 			originRotation = transform.rotation;
