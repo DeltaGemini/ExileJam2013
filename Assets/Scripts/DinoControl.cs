@@ -12,7 +12,7 @@ public class DinoControl : MonoBehaviour {
 	public float minY = -4f;	
 	public static bool roaring = false;
 	
-	bool enemyCounting = false;
+	public static bool enemyCounting = false;
 	
 	Vector3 target;
 	Vector3 startLocation;
@@ -94,6 +94,24 @@ public class DinoControl : MonoBehaviour {
 			canTriggerNewSnapSound = 1;
 		}		
 		
+		if(enemyCounting){
+			enemyTimer += Time.deltaTime;
+		} else {
+			enemyTimer = 0;
+		}
+		
+		Debug.Log(enemyCounting + ", " + enemyTimer);
+		
+		if(enemyTimer >= 5){
+			int num = followers.Count;
+			Debug.Log(num);
+			if(num >= 1){
+				followers[0].SendMessage("FollowOff");
+				followers.RemoveAt(0);
+				enemyCounting = false;
+			}
+		}
+		
 		if(Input.GetMouseButton(0)){
 			
 			mouseTime += Time.deltaTime;
@@ -131,7 +149,6 @@ public class DinoControl : MonoBehaviour {
 							if(snapSoundsLeft[0].isPlaying == false &&  snapSoundsLeft[1].isPlaying == false && snapSoundsLeft[2].isPlaying == false )
 							{
 								canTriggerNewSnapSound = 0;
-								Debug.Log("left");
 								PlaySound("clawSnapLeft");
 							}
 						}
@@ -147,7 +164,6 @@ public class DinoControl : MonoBehaviour {
 							if(snapSoundsRight[0].isPlaying == false &&  snapSoundsRight[1].isPlaying == false && snapSoundsRight[2].isPlaying == false )
 							{	
 								canTriggerNewSnapSound = 0;
-								Debug.Log("Right");
 								PlaySound("clawSnapRight");
 							}
 						}
@@ -187,23 +203,6 @@ public class DinoControl : MonoBehaviour {
 		if(child.animation["Walk"].time == 0.21 || child.animation["Walk"].time == 2){
 			PlaySound("step");
 		}
-		
-		if(enemyCounting){
-			enemyTimer += Time.deltaTime;
-		} else {
-			enemyTimer = 0;
-		}	
-			
-		//Debug.Log(enemyTimer);
-		
-		if(enemyTimer >= 5){
-			int num = followers.Count;
-			if(num > 1){
-				followers[0].SendMessage("FollowOff");
-				followers.RemoveAt(0);
-				enemyCounting = false;
-			}
-		}
 	}
 	
 	void Animate(string name){
@@ -224,9 +223,7 @@ public class DinoControl : MonoBehaviour {
 		enemyCounting = false;
 	}
 	
-	public void PlaySound (string evt) {
-		Debug.Log(evt);
-		
+	public void PlaySound (string evt) {		
 		switch (evt){
 		case "roar":
 			int randomRoar = Random.Range(16, 19);

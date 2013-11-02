@@ -40,6 +40,7 @@ public class NPC : MonoBehaviour {
 		if(!triggerActive){
 			child.animation.Play(anim01.name);
 			triggerActive = true;
+			DinoControl.enemyCounting = true;
 		}
 	}
 	

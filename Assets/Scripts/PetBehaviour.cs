@@ -24,9 +24,7 @@ public class PetBehaviour : MonoBehaviour {
 		walkAnim = child.animation["walk"];
 		walkAnim.layer = 3;
 		scaredAnim = child.animation["scared"];
-		scaredAnim.layer = 5;		
-		
-		Move();
+		scaredAnim.layer = 5;
 	}
 	
 	// Update is called once per frame
@@ -65,7 +63,7 @@ public class PetBehaviour : MonoBehaviour {
 			//parentY = parent.transform.position.y - parent.gameObject.collider.bounds.size.y/2;
 			Vector3 pos = transform.position;
 			pos += dir.normalized * Time.deltaTime * (speed + Random.Range(1f,2f)); //Linear speed			
-			if(transform.position.y < 0 && transform.position.y > -7){
+			if(transform.position.y < 0 && transform.position.y > -6){
 				pos.y += Random.Range(-0.5f,2)*Time.deltaTime;
 			}
 			pos.z = pos.y + 2f;
