@@ -8,6 +8,7 @@ public class DinoControl : MonoBehaviour {
 	public GameObject child;
 	public Camera mainCamera;
 	public float minX = -14f;
+	public float maxX = 237;
 	public float maxY = -2.5f;
 	public float minY = -4f;	
 	public static bool roaring = false;
@@ -191,6 +192,9 @@ public class DinoControl : MonoBehaviour {
 		//Don't go too far off to the left
 		if(target.x < minX)
 			target.x = minX;		
+		
+		if(target.x > maxX)
+			target.x = maxX;
 		
 		if(target.y > maxY)
 			target.y = maxY;
