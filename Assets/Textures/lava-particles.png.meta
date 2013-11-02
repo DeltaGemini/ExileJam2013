@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7eaf597c09656924d8834a3d72bbdc65
+guid: d7a1574099e7246efbc98935252986c2
 TextureImporter:
   serializedVersion: 2
   mipmaps:
@@ -20,10 +20,10 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
-    filterMode: 2
+    filterMode: -1
     aniso: -1
     mipBias: -1
     wrapMode: 1
@@ -31,6 +31,10 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   alphaIsTransparency: 1
-  textureType: 0
-  buildTargetSettings: []
+  textureType: -1
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -3
+    compressionQuality: 50
   userData: 
