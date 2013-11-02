@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DinoControl.cs">
+    <Files>
+      <File FileName="Assets\Scripts\DinoControl.cs" Line="184" Column="4" />
+      <File FileName="Assets\Scripts\PetBehaviour.cs" Line="24" Column="1" />
+      <File FileName="Assets\Scripts\NPC.cs" Line="15" Column="3" />
+      <File FileName="Assets\Scripts\FollowTrigger.cs" Line="11" Column="37" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
