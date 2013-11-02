@@ -42,7 +42,7 @@ public class PetBehaviour : MonoBehaviour {
 				AnimateBlend(scaredAnim.name);
 			}
 		} else if(pickedUpBefore){
-			target = new Vector3(-50, -4, 3);
+			target = originPosition;
 			speed = 8;
 			Move ();
 		}

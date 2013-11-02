@@ -226,8 +226,7 @@ public class DinoControl : MonoBehaviour {
 		enemyCounting = false;
 	}
 	
-	public void PlaySound (string evt) {
-		
+	public void PlaySound (string evt) {		
 		switch (evt){
 		case "roar":
 			if(!roarIsPlaying){
