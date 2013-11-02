@@ -35,7 +35,7 @@ public class Sounds_Atmos : MonoBehaviour {
 	{
 		int randomNumber;
 		randomNumber = Random.Range(0, 3);
-		Debug.Log("random: " + randomNumber);
+		//Debug.Log("random: " + randomNumber);
 		
 		
 		
@@ -81,7 +81,7 @@ IEnumerator SpawnBirdSoundsCoroutine ()
 		birdsAudioSources[nextAudioSource].volume = randomVolume;
 		birdsAudioSources[nextAudioSource].pitch = randomPitch;
 		birdsAudioSources[nextAudioSource].Play();
-		Debug.Log("started sound");
+		//Debug.Log("started sound");
 		float waitUntilNextSpawn = Random.Range(birdSpawnTimeMin, birdSpawnTimeMax); // wait until next spawn
 	
 		yield return new WaitForSeconds (birdsAudioSources[nextAudioSource].clip.length);
@@ -99,7 +99,7 @@ IEnumerator SpawnEarthquakeSoundsCoroutine ()
 		
 		int nextAudioSource = Random.Range(0, earthquakeAudiosources.Length);
 		earthquakeAudiosources[nextAudioSource].Play();
-		Debug.Log("started quake");
+		//Debug.Log("started quake");
 		float waitUntilNextSpawn = Random.Range(earthquakeSpawnTimeMin, earthquakeSpawnTimeMax); // wait until next spawn
 	
 		yield return new WaitForSeconds (earthquakeAudiosources[nextAudioSource].clip.length);

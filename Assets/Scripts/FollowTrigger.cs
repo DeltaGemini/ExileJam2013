@@ -9,7 +9,6 @@ public class FollowTrigger : MonoBehaviour {
 	}
 	
 	void OnTriggerStay (Collider col) {
-		Debug.Log(col);
 		if(col.gameObject.tag == "Player"){
 			target.SendMessage("FollowOn");			
 			Destroy(this.gameObject);

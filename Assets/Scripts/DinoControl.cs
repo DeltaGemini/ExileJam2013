@@ -8,7 +8,8 @@ public class DinoControl : MonoBehaviour {
 	public Camera mainCamera;
 	public float minX = -14f;
 	public float maxY = 10f;
-	public float minY = -4f;
+	public float minY = -4f;	
+	public bool roaring = false;
 	
 	Vector3 target;
 	Vector3 startLocation;
@@ -89,8 +90,10 @@ public class DinoControl : MonoBehaviour {
 						AnimateBlend(roarAnim.name);
 						PlaySound("roar");
 						mainCamera.gameObject.SendMessage("Shake", 0.2);
+						roaring = true;
 					} else {
 						AnimateBlend(jawAnim.name);
+						roaring = false;
 					}
 					break;
 				case "foot_back":
@@ -102,14 +105,18 @@ public class DinoControl : MonoBehaviour {
 					Animate(jumpAnim.name);
 					break;
 				case "arm_front_wrist":
-					target = transform.position;
-					AnimateBlend(frontWristAnim.name);
-					PlaySound("clawSnap");
+					if(mouseTime <= 0.05f){
+						target = transform.position;
+						AnimateBlend(frontWristAnim.name);
+						PlaySound("clawSnap");
+					}
 					break;
 				case "arm_back_wrist":
-					target = transform.position;
-					AnimateBlend(backWristAnim.name);
-					PlaySound("clawSnap");
+					if(mouseTime <= 0.05f){
+						target = transform.position;
+						AnimateBlend(backWristAnim.name);
+						PlaySound("clawSnap");
+					}
 					break;
 				case "tail09":
 				case "tail07":
@@ -120,6 +127,7 @@ public class DinoControl : MonoBehaviour {
 					break;
 				default:
 					target = ray.origin;
+					roaring = false;
 					break;
 				}					
 			}
@@ -144,12 +152,36 @@ public class DinoControl : MonoBehaviour {
 	
 	void Animate(string name){
 		child.animation.CrossFade(name);
+		if(name == "Roar"){
+			Debug.Log ("Raring");
+		}
 	}
 	
 	void AnimateBlend (string name){
 		child.animation.Blend(name, 0.5f);
 	}
+	/*
+	void OnTriggerEnter (Collider col){
+		Debug.Log(col.gameObject.transform.parent);
+		if(col.gameObject.tag == "Enemy"){
+			
+			
+			if(roaring){
+				Destroy(col.gameObject.transform.parent.gameObject);
+			}
+		}
+	}
 	
+	void OnTriggerStay (Collider col){
+		Debug.Log(col.gameObject.transform.parent);
+		if(col.gameObject.tag == "Enemy"){
+			
+			if(roaring){
+				Destroy(col.gameObject.transform.parent.gameObject);
+			}
+		}
+	}
+	*/
 	public void PlaySound (string evt) {
 		switch (evt){
 		case "roar":

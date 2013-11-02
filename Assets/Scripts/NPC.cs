@@ -4,6 +4,7 @@ using System.Collections;
 public class NPC : MonoBehaviour {
 	
 	public GameObject triggerBox;
+	bool triggerActive = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -13,8 +14,7 @@ public class NPC : MonoBehaviour {
 		transform.localScale = scale;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void Activated(){
+		Destroy(this.gameObject);
 	}
 }
