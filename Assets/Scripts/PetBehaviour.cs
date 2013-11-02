@@ -20,7 +20,7 @@ public class PetBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		idleAnim = child.animation["idle"];
-		idleAnim.layer = 2;
+		idleAnim.layer = 8;
 		walkAnim = child.animation["walk"];
 		walkAnim.layer = 3;
 		scaredAnim = child.animation["scared"];
@@ -33,6 +33,9 @@ public class PetBehaviour : MonoBehaviour {
 	void Update () {
 		if(follow) {
 			Move ();
+			if(DinoControl.roaring){
+				AnimateBlend(scaredAnim.name);
+			}
 		} else {
 			target = transform.position;
 		}
@@ -61,11 +64,11 @@ public class PetBehaviour : MonoBehaviour {
 			
 			//parentY = parent.transform.position.y - parent.gameObject.collider.bounds.size.y/2;
 			Vector3 pos = transform.position;
-			pos += dir.normalized * Time.deltaTime * (speed + Random.Range(0,1.3f)); //Linear speed			
+			pos += dir.normalized * Time.deltaTime * (speed + Random.Range(1f,2f)); //Linear speed			
 			if(transform.position.y < 0 && transform.position.y > -7){
-				pos.y += Random.Range(-1,1)*Time.deltaTime;
+				pos.y += Random.Range(-0.5f,2)*Time.deltaTime;
 			}
-			pos.z = pos.y - 2f;
+			pos.z = pos.y + 2f;
 			transform.position = pos;
 			
 			Animate(walkAnim.name);
