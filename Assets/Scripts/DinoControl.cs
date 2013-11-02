@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DinoControl : MonoBehaviour {
 	
@@ -11,6 +12,8 @@ public class DinoControl : MonoBehaviour {
 	public float minY = -4f;	
 	public bool roaring = false;
 	
+	bool enemyCounting = false;
+	
 	Vector3 target;
 	Vector3 startLocation;
 	AnimationState roarAnim;
@@ -21,6 +24,10 @@ public class DinoControl : MonoBehaviour {
 	AnimationState backWristAnim;
 	AnimationState tailAnim;
 	AnimationState jawAnim;
+	
+	float enemyTimer = 0;
+	
+	public static List<GameObject> followers = new List<GameObject>();
 	
 	public AudioClip[] sounds;
 	
@@ -52,7 +59,6 @@ public class DinoControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		
 		float dist = Vector2.Distance(transform.position, target);
 		
 		if(dist <= 3) {			
@@ -147,41 +153,56 @@ public class DinoControl : MonoBehaviour {
 		
 		if(child.animation["Walk"].time == 0.21 || child.animation["Walk"].time == 2){
 			PlaySound("step");
-		}		
+		}
+		
+		if(enemyCounting){
+			enemyTimer += Time.deltaTime;
+		} else {
+			enemyTimer = 0;
+		}
+			
+			
+		Debug.Log(enemyTimer);
+		
+		if(enemyTimer >= 5){
+			int num = followers.Count;
+			if(num > 1){
+				followers[0].SendMessage("FollowOff");
+				followers.RemoveAt(0);
+				enemyCounting = false;
+			}
+		}
 	}
 	
 	void Animate(string name){
 		child.animation.CrossFade(name);
-		if(name == "Roar"){
-			Debug.Log ("Raring");
-		}
 	}
 	
 	void AnimateBlend (string name){
 		child.animation.Blend(name, 0.5f);
 	}
-	/*
+	
 	void OnTriggerEnter (Collider col){
-		Debug.Log(col.gameObject.transform.parent);
 		if(col.gameObject.tag == "Enemy"){
+			enemyCounting = true;
+			col.gameObject.SendMessageUpwards("Activated");
+			AnimateBlend(jumpAnim.name);
 			
-			
-			if(roaring){
-				Destroy(col.gameObject.transform.parent.gameObject);
-			}
+		}
+		if(col.gameObject.tag == "ClearTimer"){
+			enemyCounting = false;
 		}
 	}
 	
 	void OnTriggerStay (Collider col){
-		Debug.Log(col.gameObject.transform.parent);
 		if(col.gameObject.tag == "Enemy"){
-			
 			if(roaring){
-				Destroy(col.gameObject.transform.parent.gameObject);
+				col.gameObject.SendMessageUpwards("Deactivated");
+				enemyCounting = false;
 			}
 		}
 	}
-	*/
+	
 	public void PlaySound (string evt) {
 		switch (evt){
 		case "roar":

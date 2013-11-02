@@ -5,6 +5,7 @@ public class PetBehaviour : MonoBehaviour {
 	
 	public GameObject parent;
 	public GameObject child;
+	string find;
 	Vector3 target;
 	public float speed = 5;
 	public float dist = 8;
@@ -33,13 +34,20 @@ public class PetBehaviour : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(follow)
+		if(follow) {
 			Move ();
-		//Debug.Log(transform.position.y + ", " + parent.transform.position.y);
+		} else {
+			target = transform.position;
+		}
 	}
 	
 	void FollowOn(){
 		follow = true;
+		DinoControl.followers.Add(this.gameObject);	
+	}
+	
+	void FollowOff(){
+		follow = false;
 	}
 	
 	void Move(){
