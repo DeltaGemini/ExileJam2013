@@ -2,10 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NPC.cs">
     <Files>
-      <File FileName="Assets\Scripts\DinoControl.cs" Line="211" Column="4" />
-      <File FileName="Assets\Scripts\NPC.cs" Line="41" Column="23" />
-      <File FileName="Assets\Scripts\PetBehaviour.cs" Line="21" Column="17" />
-      <File FileName="Assets\Scripts\FollowTrigger.cs" Line="11" Column="11" />
+      <File FileName="Assets\Scripts\DinoControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\NPC.cs" Line="31" Column="1" />
+      <File FileName="Assets\Scripts\PetBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FollowTrigger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnemyAnimationCue.cs" Line="10" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
