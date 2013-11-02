@@ -14,6 +14,7 @@ public class DinoControl : MonoBehaviour {
 	public static bool roaring = false;
 	
 	public static bool enemyCounting = false;
+	bool roarIsPlaying = false;
 	
 	Vector3 target;
 	Vector3 startLocation;
@@ -128,6 +129,7 @@ public class DinoControl : MonoBehaviour {
 					} else {
 						AnimateBlend(jawAnim.name);
 						roaring = false;
+						roarIsPlaying = false;
 					}
 					break;
 				case "foot_back":
@@ -229,6 +231,7 @@ public class DinoControl : MonoBehaviour {
 		switch (evt){
 		case "roar":
 			if(!roarIsPlaying){
+				Debug.Log("Hello");
 				int randomRoar = Random.Range(16, 19);
 				sounds[randomRoar].Play();
 				roarIsPlaying = true;

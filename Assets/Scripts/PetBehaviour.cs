@@ -18,8 +18,13 @@ public class PetBehaviour : MonoBehaviour {
 	bool follow = false;
 	bool pickedUpBefore = false;
 	
+	Vector3 originPosition;
+	
 	// Use this for initialization
 	void Start () {
+		
+		originPosition = transform.position;
+		
 		idleAnim = child.animation["idle"];
 		idleAnim.layer = 8;
 		walkAnim = child.animation["walk"];
