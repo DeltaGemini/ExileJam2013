@@ -10,6 +10,7 @@ public class NPC : MonoBehaviour {
 	public AudioClip[] roarEffect;
 	
 	AnimationState anim01;
+	AnimationState anim02;
 	
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,9 @@ public class NPC : MonoBehaviour {
 		transform.localScale = scale;
 		
 		anim01 = child.animation["EnemyEmerge"];
+		//anim01.layer = 3;
+		anim02 = child.animation["EnemyRoar"];
+		//anim02.layer = 2;
 	}
 	
 	void Update() {
@@ -27,10 +31,8 @@ public class NPC : MonoBehaviour {
 				Deactivated ();
 			}
 		}
-		if(!child.animation.isPlaying){
-			Debug.Log ("Ready to shout");
-		} else {
-			Debug.Log("Shouting");
+		if(!child.animation.isPlaying && triggerActive){
+			child.animation.Blend(anim02.name);
 		}
 	}
 	
@@ -42,9 +44,11 @@ public class NPC : MonoBehaviour {
 	}
 	
 	void Deactivated(){
+		child.animation.Stop(anim02.name);
 		anim01.speed = -1;
 		child.animation.Play(anim01.name);
 		player.SendMessage("turnOffCounter");
+		triggerActive = false;
 	}
 	
 	void PlaySound(){

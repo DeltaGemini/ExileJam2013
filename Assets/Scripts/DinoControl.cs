@@ -8,7 +8,7 @@ public class DinoControl : MonoBehaviour {
 	public GameObject child;
 	public Camera mainCamera;
 	public float minX = -14f;
-	public float maxY = 10f;
+	public float maxY = -2.5f;
 	public float minY = -4f;	
 	public static bool roaring = false;
 	
@@ -29,7 +29,14 @@ public class DinoControl : MonoBehaviour {
 	
 	public static List<GameObject> followers = new List<GameObject>();
 	
-	public AudioClip[] sounds;
+	//public AudioClip[] sounds;
+	public AudioSource[] sounds;
+	public AudioSource[] snapSoundsLeft;
+	public AudioSource[] snapSoundsRight;
+	
+	// public AudioSource[] sounds_Snaps;
+	[HideInInspector] public int canTriggerNewSnapSound = 1;
+	[HideInInspector] public int numberOfSnapsPlaying;
 	
 	//Hold down timer
 	float mouseTime = 0;
@@ -82,6 +89,11 @@ public class DinoControl : MonoBehaviour {
 			transform.position = pos;
 		}
 		
+		if(Input.GetMouseButtonUp(0))
+		{
+			canTriggerNewSnapSound = 1;
+		}		
+		
 		if(Input.GetMouseButton(0)){
 			
 			mouseTime += Time.deltaTime;
@@ -111,18 +123,34 @@ public class DinoControl : MonoBehaviour {
 					Animate(jumpAnim.name);
 					break;
 				case "arm_front_wrist":
-					if(mouseTime <= 0.05f){
+					if(mouseTime <= 0.05f){	
 						target = transform.position;
 						AnimateBlend(frontWristAnim.name);
-						PlaySound("clawSnap");
+						if(canTriggerNewSnapSound == 1)
+						{
+							if(snapSoundsLeft[0].isPlaying == false &&  snapSoundsLeft[1].isPlaying == false && snapSoundsLeft[2].isPlaying == false )
+							{
+								canTriggerNewSnapSound = 0;
+								Debug.Log("left");
+								PlaySound("clawSnapLeft");
+							}
+						}
 					}
+					
 					break;
 				case "arm_back_wrist":
-					if(mouseTime <= 0.05f){
+					if(mouseTime <= 0.05f){						
 						target = transform.position;
 						AnimateBlend(backWristAnim.name);
-						Debug.Log("play claw snap");
-						PlaySound("clawSnap");
+						if(canTriggerNewSnapSound == 1)
+						{							
+							if(snapSoundsRight[0].isPlaying == false &&  snapSoundsRight[1].isPlaying == false && snapSoundsRight[2].isPlaying == false )
+							{	
+								canTriggerNewSnapSound = 0;
+								Debug.Log("Right");
+								PlaySound("clawSnapRight");
+							}
+						}
 					}
 					break;
 				case "tail09":
@@ -207,28 +235,57 @@ public class DinoControl : MonoBehaviour {
 	}
 	
 	public void PlaySound (string evt) {
+		Debug.Log(evt);
+		
 		switch (evt){
 		case "roar":
-			AudioClip roarOnce = sounds[Random.Range(16,19)];
-			audio.PlayOneShot(roarOnce);
+			
+			
+			int randomRoar = Random.Range(16, 19);
+			sounds[randomRoar].Play();
+			
 			break;
 		case "step":
-			AudioClip footStep = sounds[Random.Range(12,15)];
-			audio.PlayOneShot(footStep);
+			
+			int randomStep = Random.Range(12, 15);
+			sounds[randomStep].Play();
+			
 			mainCamera.SendMessage("Shake", 0.05);
 			break;
 		case "breatheIn":
-            AudioClip breathIn = sounds[Random.Range (30,39)];
-            audio.PlayOneShot(breathIn);
+            
+			int randomBreathIn = Random.Range(30, 39);
+			sounds[randomBreathIn].Play();
+			
+            
             break;
         case "breatheOut":
-            AudioClip breathOut = sounds[Random.Range (20,29)];
-            audio.PlayOneShot(breathOut);
+            
+			int randomBreathOut = Random.Range(20, 29);
+			sounds[randomBreathOut].Play();
+			
+            
             break;
-		case "clawSnap":
-			AudioClip snappingClaw = sounds[Random.Range(40, 42)];
-			audio.PlayOneShot(snappingClaw);
+		case "clawSnapRight":
+			
+			
+			int randomSnapRight = Random.Range(0, snapSoundsRight.Length);
+			
+			
+			
+			snapSoundsRight[randomSnapRight].Play();
+			
+			
 			break;
+			
+		case "clawSnapLeft":
+			
+			int randomSnapLeft = Random.Range(0, snapSoundsLeft.Length);
+			
+			snapSoundsLeft[randomSnapLeft].Play();
+			
+			break;
+		
         }
 	}
 }
