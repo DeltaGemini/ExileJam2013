@@ -230,7 +230,6 @@ public class DinoControl : MonoBehaviour {
 		switch (evt){
 		case "roar":
 			if(!roarIsPlaying){
-				Debug.Log("Hello");
 				int randomRoar = Random.Range(16, 19);
 				sounds[randomRoar].Play();
 				roarIsPlaying = true;
