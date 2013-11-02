@@ -14,10 +14,10 @@ public class NPC : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		Vector3 scale = transform.localScale;
+		/*Vector3 scale = transform.localScale;
 		scale.x = Mathf.Sign(dir);		
 		transform.localScale = scale;
-		
+		*/
 		anim01 = child.animation["EnemyEmerge"];
 		//anim01.layer = 3;
 		anim02 = child.animation["EnemyRoar"];
