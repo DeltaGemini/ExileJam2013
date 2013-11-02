@@ -219,16 +219,6 @@ public class DinoControl : MonoBehaviour {
 			enemyCounting = false;
 		}
 	}
-	/*
-	void OnTriggerStay (Collider col){
-		if(col.gameObject.tag == "Enemy"){
-			if(roaring){
-				col.gameObject.SendMessageUpwards("Deactivated");
-				enemyCounting = false;
-			}
-		}
-	}
-	*/
 	
 	void turnOffCounter(){
 		enemyCounting = false;
@@ -239,53 +229,30 @@ public class DinoControl : MonoBehaviour {
 		
 		switch (evt){
 		case "roar":
-			
-			
 			int randomRoar = Random.Range(16, 19);
 			sounds[randomRoar].Play();
-			
 			break;
 		case "step":
-			
 			int randomStep = Random.Range(12, 15);
 			sounds[randomStep].Play();
-			
 			mainCamera.SendMessage("Shake", 0.05);
 			break;
 		case "breatheIn":
-            
 			int randomBreathIn = Random.Range(30, 39);
 			sounds[randomBreathIn].Play();
-			
-            
             break;
-        case "breatheOut":
-            
+        case "breatheOut":            
 			int randomBreathOut = Random.Range(20, 29);
 			sounds[randomBreathOut].Play();
-			
-            
             break;
-		case "clawSnapRight":
-			
-			
+		case "clawSnapRight":			
 			int randomSnapRight = Random.Range(0, snapSoundsRight.Length);
-			
-			
-			
 			snapSoundsRight[randomSnapRight].Play();
-			
-			
 			break;
-			
 		case "clawSnapLeft":
-			
 			int randomSnapLeft = Random.Range(0, snapSoundsLeft.Length);
-			
 			snapSoundsLeft[randomSnapLeft].Play();
-			
 			break;
-		
         }
 	}
 }
